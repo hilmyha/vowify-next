@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { signUpAction } from "@/actions/auth-action";
 import { z } from "zod";
@@ -8,7 +7,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,15 +14,15 @@ import {
 } from "./ui/form";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { toast } from "sonner";
 
 const formSchema = z.object({
-  name: z.string(),
+  name: z.string().min(3),
   email: z.string().email(),
   password: z.string().min(6),
 });
 
 export default function RegisterForm() {
-  const [error, setError] = useState(null as string | null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -36,7 +34,6 @@ export default function RegisterForm() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setError(null);
     try {
       const formData = new FormData();
       formData.append("name", values.name);
@@ -46,32 +43,31 @@ export default function RegisterForm() {
       const res = await signUpAction(formData);
 
       if (res?.error) {
-        setError(res.error as string);
+        toast.error(res?.error as string);
       }
 
       form.reset();
     } catch (error) {
-      setError(error as string);
+      toast.error(error as string);
     }
   }
 
   return (
     <div>
-      {error && <p>{error}</p>}
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-4"
+        >
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel htmlFor="name">Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter your name" type="text" {...field} />
+                  <Input id="name" placeholder="Enter your name" type="text" {...field} />
                 </FormControl>
-                <FormDescription>
-                  This is your public display name.
-                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -81,17 +77,15 @@ export default function RegisterForm() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel htmlFor="email">Email</FormLabel>
                 <FormControl>
                   <Input
+                    id="email"
                     placeholder="Enter your email"
                     type="email"
                     {...field}
                   />
                 </FormControl>
-                <FormDescription>
-                  This is your public display name.
-                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -101,23 +95,23 @@ export default function RegisterForm() {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel htmlFor="password">Password</FormLabel>
                 <FormControl>
                   <Input
+                    id="password"
                     placeholder="Enter your password"
                     type="password"
                     {...field}
                   />
                 </FormControl>
-                <FormDescription>
-                  This is your public display name.
-                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <Button type="submit">Login</Button>
+          <Button className="w-full" type="submit">
+            Register
+          </Button>
         </form>
       </Form>
     </div>

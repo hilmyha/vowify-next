@@ -43,10 +43,10 @@ export default async function Header() {
       <div className="container flex items-center justify-between">
         <div className="flex items-center gap-1">
           <Link href="/">
-            <h1 className="font-black italic font-serif text-3xl border">Vowify</h1>
+            <h1 className="font-black italic font-serif text-4xl">Vowify</h1>
           </Link>
 
-          <div className="md:flex gap-2 hidden ml-2 border">
+          <div className="md:flex gap-2 hidden ml-4">
             {links.map((link) => (
               <Link
                 key={link.href}
