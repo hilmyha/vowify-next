@@ -15,6 +15,7 @@ import { redirect } from "next/navigation";
 import SignOutButton from "@/components/signout-button";
 import React from "react";
 import Link from "next/link";
+import { ModeToggle } from "@/components/mode-toggle";
 
 export default async function DashboardLayout({
   children,
@@ -35,34 +36,37 @@ export default async function DashboardLayout({
             />
             <p>disini breadcrumb</p>
           </div>
-          {session?.user ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger
-                className="cursor-pointer outline-none"
-                suppressHydrationWarning
-              >
-                <Avatar>
-                  {session.user.image ? (
-                    <AvatarImage src={session.user.image} />
-                  ) : (
-                    <AvatarFallback>
-                      {session.user.name?.slice(0, 2).toLocaleUpperCase()}
-                    </AvatarFallback>
-                  )}
-                </Avatar>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuLabel>{session.user.email}</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link href={`/dashboard/profile/${session.user.id}`}>
-                    Profile
-                  </Link>
-                </DropdownMenuItem>
-                <SignOutButton />
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ) : null}
+          <div className="flex items-center gap-1">
+            <ModeToggle />
+            {session?.user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger
+                  className="cursor-pointer outline-none"
+                  suppressHydrationWarning
+                >
+                  <Avatar>
+                    {session.user.image ? (
+                      <AvatarImage src={session.user.image} />
+                    ) : (
+                      <AvatarFallback>
+                        {session.user.name?.slice(0, 2).toLocaleUpperCase()}
+                      </AvatarFallback>
+                    )}
+                  </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuLabel>{session.user.email}</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link href={`/dashboard/profile/${session.user.id}`}>
+                      Profile
+                    </Link>
+                  </DropdownMenuItem>
+                  <SignOutButton />
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : null}
+          </div>
         </header>
 
         <div className="px-4">{children}</div>

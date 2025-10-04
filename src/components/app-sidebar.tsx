@@ -20,22 +20,22 @@ const items = [
   },
   {
     title: "Undangan",
-    url: "/invitations",
+    url: "/dashboard/invitations",
     icon: FileHeart,
   },
   {
     title: "Beli Kuota",
-    url: "/buy-kuota",
+    url: "/dashboard/buy-quota",
     icon: Banknote,
   },
   {
     title: "Riwayat Transaksi",
-    url: "/transactions",
+    url: "/dashboard/transactions",
     icon: ReceiptText,
   },
   {
     title: "Customer Support",
-    url: "/customer-support",
+    url: "/dashboard/customer-support",
     icon: Headset,
   },
 ];

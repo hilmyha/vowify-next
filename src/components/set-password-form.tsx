@@ -50,6 +50,7 @@ export default function SetPasswordForm({ data }: { data: ProfileFormProps }) {
       toast.error(error as string);
     }
   }
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">

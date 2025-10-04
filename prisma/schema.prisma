@@ -13,15 +13,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum InvitationStatus {
+  DRAFT
+  PUBLISHED
+}
+
 model User {
-  id            String          @id @default(cuid())
+  id            String       @id @default(cuid())
   name          String?
-  email         String          @unique
+  email         String       @unique
   emailVerified DateTime?
   password      String?
   image         String?
   accounts      Account[]
   sessions      Session[]
+  Quota         Quota[]
+  Invitation    Invitation[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -66,3 +73,35 @@ model VerificationToken {
   @@id([identifier, token])
 }
 
+model Quota {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quota     Int      @default(0)
+  usedQuota Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Invitation {
+  id         String           @id @default(cuid())
+  userId     String
+  user       User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name       String
+  status     InvitationStatus @default(DRAFT)
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @updatedAt
+  BrideGroom BrideGroom[]
+}
+
+model BrideGroom {
+  id           String     @id @default(cuid())
+  invitationId String     @unique
+  invitation   Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+  brideName    String
+  groomName    String
+  brideParent  String
+  groomParent  String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
