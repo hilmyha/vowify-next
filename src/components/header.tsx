@@ -65,8 +65,8 @@ export default async function Header() {
 
           {session?.user ? (
             <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Avatar>
+              <DropdownMenuTrigger className="cursor-pointer outline-none">
+                <Avatar className="w-10 h-10">
                   {session.user.image ? (
                     <AvatarImage src={session.user.image} />
                   ) : (

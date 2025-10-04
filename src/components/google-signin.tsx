@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function GoogleSignIn() {
   return (
-    <Button onClick={() => signIn("google", { callbackUrl: "/" })}>
+    <Button variant="outline" onClick={() => signIn("google", { callbackUrl: "/" })}>
       Continue with Google
       <Image
         width="24"
