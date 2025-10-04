@@ -62,7 +62,7 @@ export default function LoginForm() {
             <FormItem>
               <FormLabel htmlFor="email">Email</FormLabel>
               <FormControl>
-                <Input id="email" placeholder="Enter your email" type="email" {...field} />
+                <Input id="email" placeholder="contoh@email.com" type="email" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -77,7 +77,7 @@ export default function LoginForm() {
               <FormControl>
                 <Input
                   id="password"
-                  placeholder="Enter your password"
+                  placeholder="*********"
                   type="password"
                   {...field}
                 />
@@ -87,7 +87,7 @@ export default function LoginForm() {
           )}
         />
 
-        <Button className="w-full" type="submit">Login</Button>
+        <Button className="w-full" type="submit">Masuk</Button>
       </form>
     </Form>
   );

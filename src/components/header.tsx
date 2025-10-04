@@ -36,10 +36,17 @@ const links: { name: string; href: string }[] = [
   },
 ];
 
+const dropdownLinks: { name: string; href: string }[] = [
+  {
+    name: "Dashboard",
+    href: "/dashboard",
+  },
+];
+
 export default async function Header() {
   const session = await auth();
   return (
-    <div className="py-8 md:shadow-xl md:border-b md:py-6 sticky top-0 z-50 left-0 bg-background">
+    <div className="py-8 w-full md:shadow-xl md:border-b md:py-6 sticky top-0 z-20 left-0 bg-background">
       <div className="container flex items-center justify-between">
         <div className="flex items-center gap-1">
           <Link href="/">
@@ -77,18 +84,20 @@ export default async function Header() {
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuLabel>Account</DropdownMenuLabel>
+                <DropdownMenuLabel>{session.user.name}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Billing</DropdownMenuItem>
-                <DropdownMenuItem>Team</DropdownMenuItem>
+                {dropdownLinks.map((link) => (
+                  <DropdownMenuItem asChild key={link.href}>
+                    <Link href={link.href}>{link.name}</Link>
+                  </DropdownMenuItem>
+                ))}
                 <DropdownMenuSeparator />
                 <SignOutButton />
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
             <Button variant={"outline"} asChild>
-              <Link href="/login">Login</Link>
+              <Link href="/login">Masuk</Link>
             </Button>
           )}
 
@@ -100,7 +109,9 @@ export default async function Header() {
             </SheetTrigger>
             <SheetContent>
               <SheetHeader>
-                <SheetTitle>Title</SheetTitle>
+                <SheetTitle className="font-black italic font-serif text-2xl">
+                  Vowify
+                </SheetTitle>
               </SheetHeader>
               <div className="flex flex-col px-4 gap-2">
                 {links.map((link) => (

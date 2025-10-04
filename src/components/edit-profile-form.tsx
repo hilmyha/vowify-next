@@ -66,11 +66,11 @@ export default function EditProfileForm({ data }: { data: ProfileFormProps }) {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="name">Name</FormLabel>
+              <FormLabel htmlFor="name">Nama</FormLabel>
               <FormControl>
                 <Input
                   id="name"
-                  placeholder="Enter your name"
+                  placeholder="John Doe"
                   type="text"
                   {...field}
                 />
@@ -88,7 +88,7 @@ export default function EditProfileForm({ data }: { data: ProfileFormProps }) {
               <FormControl>
                 <Input
                   id="email"
-                  placeholder="Enter your email"
+                  placeholder="contoh@email.com"
                   type="email"
                   disabled
                   {...field}
@@ -103,11 +103,11 @@ export default function EditProfileForm({ data }: { data: ProfileFormProps }) {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="password">New Password</FormLabel>
+              <FormLabel htmlFor="password">Password Baru</FormLabel>
               <FormControl>
                 <Input
                   id="password"
-                  placeholder="Enter your new password"
+                  placeholder="********"
                   type="password"
                   {...field}
                 />

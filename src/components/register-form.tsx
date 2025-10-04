@@ -23,7 +23,6 @@ const formSchema = z.object({
 });
 
 export default function RegisterForm() {
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -55,18 +54,20 @@ export default function RegisterForm() {
   return (
     <div>
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4"
-        >
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel htmlFor="name">Name</FormLabel>
+                <FormLabel htmlFor="name">Nama</FormLabel>
                 <FormControl>
-                  <Input id="name" placeholder="Enter your name" type="text" {...field} />
+                  <Input
+                    id="name"
+                    placeholder="John Doe"
+                    type="text"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -81,7 +82,7 @@ export default function RegisterForm() {
                 <FormControl>
                   <Input
                     id="email"
-                    placeholder="Enter your email"
+                    placeholder="contoh@email.com"
                     type="email"
                     {...field}
                   />
@@ -99,7 +100,7 @@ export default function RegisterForm() {
                 <FormControl>
                   <Input
                     id="password"
-                    placeholder="Enter your password"
+                    placeholder="*********"
                     type="password"
                     {...field}
                   />
@@ -110,7 +111,7 @@ export default function RegisterForm() {
           />
 
           <Button className="w-full" type="submit">
-            Register
+            Daftar
           </Button>
         </form>
       </Form>

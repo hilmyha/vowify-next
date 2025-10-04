@@ -26,10 +26,7 @@ export default async function DashboardLayout({
     <SidebarProvider>
       <AppSidebar />
       <main className="flex flex-1 flex-col">
-        <header
-          className="flex pr-4 justify-between h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12"
-          suppressHydrationWarning
-        >
+        <header className="flex pr-4 justify-between h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             <Separator
@@ -40,7 +37,10 @@ export default async function DashboardLayout({
           </div>
           {session?.user ? (
             <DropdownMenu>
-              <DropdownMenuTrigger className="cursor-pointer outline-none">
+              <DropdownMenuTrigger
+                className="cursor-pointer outline-none"
+                suppressHydrationWarning
+              >
                 <Avatar>
                   {session.user.image ? (
                     <AvatarImage src={session.user.image} />
@@ -66,6 +66,14 @@ export default async function DashboardLayout({
         </header>
 
         <div className="px-4">{children}</div>
+        <div className="mt-auto p-4 flex items-center justify-between border-t">
+          <p className="text-sm text-muted-foreground">
+            © {new Date().getFullYear()} Vowify
+          </p>
+          <p className="text-sm text-muted-foreground">
+            Version {process.env.NEXT_PUBLIC_APP_VERSION}
+          </p>
+        </div>
       </main>
     </SidebarProvider>
   );

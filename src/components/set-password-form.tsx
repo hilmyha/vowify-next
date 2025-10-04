@@ -58,11 +58,11 @@ export default function SetPasswordForm({ data }: { data: ProfileFormProps }) {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="password">New Password</FormLabel>
+              <FormLabel htmlFor="password">Password baru</FormLabel>
               <FormControl>
                 <Input
                   id="password"
-                  placeholder="Enter your new password"
+                  placeholder="********"
                   type="password"
                   {...field}
                 />

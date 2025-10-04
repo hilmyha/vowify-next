@@ -11,10 +11,9 @@ export default async function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center">
-      <div className="container lg:w-1/3 p-6 border rounded-2xl bg-background shadow-xl">
-        {children}
-      </div>
+    <div className="min-h-screen gap-8 flex flex-col justify-center items-center p-4">
+      <h1 className="font-black italic font-serif text-4xl">Vowify</h1>
+      {children}
     </div>
   );
 }

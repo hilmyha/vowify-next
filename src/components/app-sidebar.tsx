@@ -1,4 +1,4 @@
-import { Home } from "lucide-react";
+import { Banknote, FileHeart, Headset, Home, ReceiptText } from "lucide-react";
 
 import {
   Sidebar,
@@ -18,6 +18,26 @@ const items = [
     url: "/dashboard",
     icon: Home,
   },
+  {
+    title: "Undangan",
+    url: "/invitations",
+    icon: FileHeart,
+  },
+  {
+    title: "Beli Kuota",
+    url: "/buy-kuota",
+    icon: Banknote,
+  },
+  {
+    title: "Riwayat Transaksi",
+    url: "/transactions",
+    icon: ReceiptText,
+  },
+  {
+    title: "Customer Support",
+    url: "/customer-support",
+    icon: Headset,
+  },
 ];
 
 export function AppSidebar() {
@@ -25,7 +45,7 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>Member</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (

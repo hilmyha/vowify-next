@@ -1,5 +1,12 @@
 import { show } from "@/actions/user-action";
 import EditProfileForm from "@/components/edit-profile-form";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import React from "react";
 
 export default async function page({
@@ -14,8 +21,15 @@ export default async function page({
 
   return (
     <div suppressHydrationWarning>
-      <h2 className="font-bold text-2xl mb-6">Edit Profile</h2>
-      <EditProfileForm data={user} />
+      <Card>
+        <CardHeader>
+          <CardTitle>Edit Profile</CardTitle>
+          <CardDescription>Edit profile kamu</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <EditProfileForm data={user} />
+        </CardContent>
+      </Card>
     </div>
   );
 }
